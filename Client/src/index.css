@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Dark theme (default) ───────────────────────────────────────── */
+:root {
+  --bg:        #07080d;
+  --surface:   #0c0e16;
+  --surface-2: #111420;
+  --surface-3: #171b28;
+  --border:    #1b1f2e;
+  --border-2:  #232a3e;
+  --text:      #e2e6f4;
+  --text-2:    #6b7694;
+  --text-3:    #3a4260;
+  --blue:      #4f8cff;
+  --blue-dim:  rgba(79,140,255,0.12);
+  --green:     #17c964;
+  --green-dim: rgba(23,201,100,0.10);
+  --red:       #f0324b;
+  --red-dim:   rgba(240,50,75,0.10);
+  --amber:     #ffb800;
+  --amber-dim: rgba(255,184,0,0.12);
+  --shadow:    0 8px 32px rgba(0,0,0,0.5);
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.35);
+  --radius:    10px;
+  --radius-sm: 6px;
+}
+
+/* ── Light theme ────────────────────────────────────────────────── */
+[data-theme="light"] {
+  --bg:        #edf0f9;
+  --surface:   #ffffff;
+  --surface-2: #f3f5fc;
+  --surface-3: #eaecf6;
+  --border:    #dde1ef;
+  --border-2:  #c8cedf;
+  --text:      #0d1020;
+  --text-2:    #5a6480;
+  --text-3:    #9aa3be;
+  --blue:      #2563eb;
+  --blue-dim:  rgba(37,99,235,0.08);
+  --green:     #059669;
+  --green-dim: rgba(5,150,105,0.08);
+  --red:       #dc2626;
+  --red-dim:   rgba(220,38,38,0.08);
+  --amber:     #d97706;
+  --amber-dim: rgba(217,119,6,0.10);
+  --shadow:    0 4px 20px rgba(0,0,0,0.08);
+  --shadow-sm: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', 'SF Pro Text', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Flash animations ───────────────────────────────────────────── */
+.flash-up { animation: flashUp 0.55s ease-out; }
+.flash-dn { animation: flashDn 0.55s ease-out; }
+
+@keyframes flashUp {
+  0%   { background: var(--green-dim); }
+  100% { background: transparent; }
+}
+@keyframes flashDn {
+  0%   { background: var(--red-dim); }
+  100% { background: transparent; }
+}
+
+/* ── Scrollbar ──────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 3px; height: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 2px; }
+
+/* ── Theme transitions ──────────────────────────────────────────── */
+.theme-ready * {
+  transition: background-color 0.2s ease, border-color 0.2s ease,
+              color 0.15s ease, box-shadow 0.2s ease;
+}
+.theme-ready canvas,
+.theme-ready svg { transition: none !important; }
+
+/* ── Dashboard grid ─────────────────────────────────────────────── */
+.dash-grid {
+  display: grid;
+  grid-template-columns: 260px 1fr 280px;
+  gap: 12px;
+  align-items: start;
+}
+@media (max-width: 1280px) {
+  .dash-grid { grid-template-columns: 240px 1fr; }
+  .dash-right { display: none; }
+}
+@media (max-width: 768px) {
+  .dash-grid { grid-template-columns: 1fr; }
+  .dash-right { display: block; }
+}

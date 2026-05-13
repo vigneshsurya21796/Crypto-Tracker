@@ -4,7 +4,7 @@ const { setPrice } = require('../cache/redis');
 const SYMBOLS = ['btcusdt', 'ethusdt', 'solusdt', 'bnbusdt'];
 
 const streams = SYMBOLS.map((s) => `${s}@ticker`).join('/');
-const BINANCE_WS_URL = `wss://stream.binance.com:9443/stream?streams=${streams}`;
+const BINANCE_WS_URL = `wss://stream.binance.us:9443/stream?streams=${streams}`;
 
 let reconnectAttempt = 0;
 let ioInstance = null;
